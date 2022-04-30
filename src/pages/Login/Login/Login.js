@@ -1,10 +1,11 @@
 import React, { useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import {
+  useAuthState,
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
@@ -14,15 +15,13 @@ import "./Login.css";
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const emailRef = useRef("");
-  const [signInWithEmailAndPassword, user, loading, error] =
+  const [signInWithEmailAndPassword, regUser, regLoading, error] =
     useSignInWithEmailAndPassword(auth);
-  const [sendPasswordResetEmail, sending, resetError] =
-    useSendPasswordResetEmail(auth);
+  const [user, loading] = useAuthState(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
   const navigate = useNavigate();
-
-  if (loading || sending) {
-    return <Loading></Loading>;
-  }
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -30,6 +29,13 @@ const Login = () => {
     const password = e.target.password.value;
     signInWithEmailAndPassword(email, password);
   };
+
+  if (loading || sending) {
+    return <Loading></Loading>;
+  }
+  if (user) {
+    navigate(from, { replace: true });
+  }
 
   const resetPassword = async () => {
     const email = emailRef.current.value;
@@ -41,9 +47,7 @@ const Login = () => {
       toast("Please input your email");
     }
   };
-  if (user) {
-    navigate("/");
-  }
+
   return (
     <div className="d-flex justify-content-center align-items-center height-control">
       <div className="container">

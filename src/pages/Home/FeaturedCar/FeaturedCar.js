@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./FeaturedCar.css";
 
 const FeaturedCar = ({ car }) => {
+  const navigate = useNavigate();
   return (
     <div className="col">
       <div className="card h-100 border-bottom-0">
@@ -31,7 +33,12 @@ const FeaturedCar = ({ car }) => {
           <p className="card-text mt-3">{car.description}</p>
         </div>
         <div className="card-footer border-0 p-0">
-          <button className="w-100 btn btn-danger">Manage Inventory</button>
+          <button
+            onClick={() => navigate(`/inventory/${car._id}`)}
+            className="w-100 btn btn-danger"
+          >
+            Manage Inventory
+          </button>
         </div>
       </div>
     </div>

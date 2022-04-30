@@ -7,6 +7,8 @@ import Footer from "./pages/Shared/Footer/Footer";
 import Login from "./pages/Login/Login/Login";
 import Register from "./pages/Login/Register/Register";
 import "react-toastify/dist/ReactToastify.css";
+import Inventory from "./pages/Inventory/Inventory";
+import RequireAuth from "./pages/RequireAuth/RequireAuth";
 
 function App() {
   return (
@@ -14,6 +16,14 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
+        <Route
+          path="/inventory/:id"
+          element={
+            <RequireAuth>
+              <Inventory></Inventory>
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
       </Routes>

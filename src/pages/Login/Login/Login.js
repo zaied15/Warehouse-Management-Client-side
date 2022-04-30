@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import React, { useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import {
@@ -37,7 +36,7 @@ const Login = () => {
     console.log(email);
     if (email) {
       await sendPasswordResetEmail(email);
-      toast("Email Sent");
+      toast("Email Sent. Please check!");
     } else {
       toast("Please input your email");
     }
@@ -105,8 +104,8 @@ const Login = () => {
             <SocialLogin></SocialLogin>
           </div>
         </div>
+        <ToastContainer />
       </div>
-      <ToastContainer />
     </div>
   );
 };

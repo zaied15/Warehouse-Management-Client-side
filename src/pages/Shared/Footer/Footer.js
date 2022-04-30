@@ -13,7 +13,7 @@ const Footer = () => {
               <a href="https://facebook.com/zaied15">Zaied</a>
             </p>
           </div>
-          <div className="col-md-6 gap-3 d-flex justify-content-end">
+          <div className="col-md-6 gap-3 d-flex justify-content-center">
             <Link to="/">Home</Link> |<Link to="/blog">Blog</Link> |
             <Link to="/products">All Products</Link>
           </div>

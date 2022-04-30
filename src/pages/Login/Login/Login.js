@@ -41,10 +41,6 @@ const Login = () => {
       toast("Please input your email");
     }
   };
-
-  if (resetError) {
-    toast(resetError.message);
-  }
   if (user) {
     navigate("/");
   }

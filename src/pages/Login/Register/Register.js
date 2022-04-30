@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
-import { toast } from "react-toastify";
 import Loading from "../../Shared/Loading/Loading";
 
 const Register = () => {
@@ -95,7 +94,7 @@ const Register = () => {
                 <Button
                   variant="primary"
                   type="submit"
-                  disabled={!terms ? "true" : ""}
+                  disabled={!terms ? true : false}
                 >
                   Register
                 </Button>

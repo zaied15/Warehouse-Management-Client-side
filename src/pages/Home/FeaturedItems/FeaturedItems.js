@@ -5,7 +5,6 @@ import "./FeaturedItems.css";
 
 const FeaturedItems = () => {
   const [cars] = useCars();
-  const stockOut = cars.filter((car) => car.quantity === 0);
   const inStock = cars.filter((car) => car.quantity > 0);
 
   return (
@@ -22,19 +21,6 @@ const FeaturedItems = () => {
           ))}
         </div>
         <hr />
-        {/* Out Of Stock Section */}
-        <div>
-          <h3 className="section-title text-center my-5 fw-bold">
-            <span className="d-inline-block border-bottom border-danger border-2">
-              STOCK OUT PRODUCTS
-            </span>
-          </h3>
-          <div className="row row-cols-1 row-cols-md-3 g-4">
-            {stockOut.map((car) => (
-              <FeaturedCar car={car}></FeaturedCar>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   );

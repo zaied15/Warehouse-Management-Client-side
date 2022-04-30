@@ -22,6 +22,7 @@ const FeaturedItems = () => {
           ))}
         </div>
         <hr />
+        {/* Out Of Stock Section */}
         <div>
           <h3 className="section-title text-center my-5 fw-bold">
             <span className="d-inline-block border-bottom border-danger border-2">

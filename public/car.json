@@ -4,7 +4,7 @@
     "name": "Acura Rsx",
     "price": 30000,
     "supplier": "Acura",
-    "quantity": 10,
+    "quantity": 30,
     "description": "Like most Acura vehicles, the RSX boasts a high level of refinement as well as a reputation for above-average reliability, competitive pricing and strong resale value. In road tests, our editors found the RSX's main performance strengths to be nimble handling and responsive steering.",
     "img": "https://i.ibb.co/f2Czz2L/Acura-Rsx.jpg"
   },
@@ -82,7 +82,7 @@
   },
   {
     "_id": 10,
-    "name": "Toyota avalon hybrid",
+    "name": "Toyota Avalon Hybrid",
     "price": 48000,
     "supplier": "Toyota",
     "quantity": 25,

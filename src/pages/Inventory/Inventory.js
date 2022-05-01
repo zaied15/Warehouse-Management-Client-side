@@ -69,7 +69,7 @@ const Inventory = () => {
                     <Form.Control type="text" />
                   </Form.Group>
                   <Button variant="primary" type="submit">
-                    Update
+                    Stock
                   </Button>
                 </Form>
               </div>

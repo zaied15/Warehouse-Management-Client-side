@@ -35,9 +35,9 @@ const FeaturedCar = ({ car }) => {
         <div className="card-footer border-0 p-0">
           <button
             onClick={() => navigate(`/inventory/${car._id}`)}
-            className="w-100 btn btn-danger"
+            className="w-100 btn btn-secondary"
           >
-            Manage Inventory
+            Update Inventory
           </button>
         </div>
       </div>

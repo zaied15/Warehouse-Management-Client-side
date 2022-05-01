@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import useCars from "../../../hooks/useCars";
 import FeaturedCar from "../FeaturedCar/FeaturedCar";
 import "./FeaturedItems.css";
@@ -15,10 +16,20 @@ const FeaturedItems = () => {
             FEATURED PRODUCTS
           </span>
         </h3>
-        <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
+        <div className="row row-cols-1 row-cols-md-3 g-4 mb-3">
           {inStock.slice(0, 6).map((car) => (
             <FeaturedCar key={car._id} car={car}></FeaturedCar>
           ))}
+        </div>
+        <div className="mb-5">
+          <h5 className="text-center">
+            <Link
+              className="btn btn-danger fw-bold p-3"
+              to="/manageInventories"
+            >
+              Manage Inventories
+            </Link>
+          </h5>
         </div>
         <hr />
       </div>

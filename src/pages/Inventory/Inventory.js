@@ -1,13 +1,16 @@
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Form, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Inventory = () => {
   const { id } = useParams();
   const [car, setCar] = useState({});
-  const [newQuantity, setNewQuantity] = useState(0);
-  const refQuantity = useRef("");
+  const localCarId = parseInt(localStorage.getItem(id));
+  const localSoldId = parseInt(localStorage.getItem(`sold${id}`));
+  const [newQuantity, setNewQuantity] = useState(localCarId);
+  const [sold, setSold] = useState(localSoldId);
 
   useEffect(() => {
     const url = `http://localhost:5000/car/${id}`;
@@ -18,10 +21,32 @@ const Inventory = () => {
 
   const handleDeliver = (e) => {
     e.preventDefault();
-    const quantity = refQuantity.current.value;
-    if (quantity > 1) {
-      setNewQuantity(quantity - 1);
+    setSold(sold + 1);
+    if (newQuantity > 0) {
+      setNewQuantity(newQuantity - 1);
+      localStorage.setItem(car._id, newQuantity - 1);
+      localStorage.setItem(`sold${id}`, sold + 1);
     }
+
+    const updatedQuantity = { quantity: localCarId - 1, sold: sold + 1 };
+    const url = `http://localhost:5000/car/${id}`;
+    axios.put(url, updatedQuantity).then((response) => {
+      toast("Delivered the car successfully!");
+    });
+  };
+
+  const handleStockCar = (e) => {
+    e.preventDefault();
+    const stockQuantity = parseInt(e.target.stockQuantity.value);
+    localStorage.setItem(car._id, stockQuantity + localCarId);
+    setNewQuantity(stockQuantity + localCarId);
+    const UpdatedStockQuantity = { quantity: stockQuantity + localCarId };
+
+    const url = `http://localhost:5000/car/${id}`;
+    axios.put(url, UpdatedStockQuantity).then((response) => {
+      toast("Stock Added Successfully");
+      e.target.reset();
+    });
   };
 
   return (
@@ -34,8 +59,13 @@ const Inventory = () => {
                 <h2 className="text-center my-5">
                   Please update your items: {car.name}
                 </h2>
-                {/* <img src={} alt="" /> */}
-                <Form>
+                <img
+                  src={car.img}
+                  width="250"
+                  alt=""
+                  className="d-inline-block mx-auto"
+                />
+                <Form onSubmit={handleDeliver}>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Model:</Form.Label>
                     <Form.Control
@@ -79,40 +109,38 @@ const Inventory = () => {
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Quantity</Form.Label>
-                    <Form.Control
-                      ref={refQuantity}
-                      type="text"
-                      value={newQuantity ? newQuantity : car.quantity}
-                    />
+                    <Form.Control type="text" value={newQuantity} readOnly />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Sold</Form.Label>
-                    <Form.Control type="text" />
+                    <Form.Control type="text" value={sold} readOnly />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <button onClick={handleDeliver} className="btn btn-warning">
-                      Delivered
-                    </button>
+                    {newQuantity ? (
+                      <Button
+                        // onClick={handleDeliver}
+                        variant="warning"
+                        type="submit"
+                      >
+                        Delivered
+                      </Button>
+                    ) : (
+                      <button className="btn btn-danger" disabled>
+                        Sold out
+                      </button>
+                    )}
                   </Form.Group>
-
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    className="w-100 fw-bold"
-                  >
-                    Update
-                  </Button>
                 </Form>
               </div>
               <div className="col-md-2"></div>
               <div className="col-md-5">
                 <h2 className="text-center my-5">Re-stock your items</h2>
                 {/* <img src={} alt="" /> */}
-                <Form>
+                <Form onSubmit={handleStockCar}>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Quantity</Form.Label>
-                    <Form.Control type="text" />
+                    <Form.Control type="text" name="stockQuantity" />
                   </Form.Group>
                   <Button variant="primary" type="submit">
                     Stock

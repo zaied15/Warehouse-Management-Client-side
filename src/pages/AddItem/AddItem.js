@@ -24,7 +24,8 @@ const AddItem = () => {
     axios.post("http://localhost:5000/car", carObj).then((response) => {
       toast("success");
     });
-    navigate("/my-items");
+    e.target.reset();
+    // navigate("/my-items");
   };
   return (
     <div>

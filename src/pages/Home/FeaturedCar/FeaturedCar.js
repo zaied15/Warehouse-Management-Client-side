@@ -4,6 +4,12 @@ import "./FeaturedCar.css";
 
 const FeaturedCar = ({ car }) => {
   const navigate = useNavigate();
+
+  const handleInventory = () => {
+    navigate(`/inventory/${car._id}`);
+    localStorage.setItem(car._id, car.quantity);
+    localStorage.setItem(`sold${car._id}`, car.sold);
+  };
   return (
     <div className="col">
       <div className="card h-100 border-bottom-0">
@@ -33,10 +39,7 @@ const FeaturedCar = ({ car }) => {
           <p className="card-text mt-3">{car.description}</p>
         </div>
         <div className="card-footer border-0 p-0">
-          <button
-            onClick={() => navigate(`/inventory/${car._id}`)}
-            className="w-100 btn btn-secondary"
-          >
+          <button onClick={handleInventory} className="w-100 btn btn-secondary">
             Update Inventory
           </button>
         </div>

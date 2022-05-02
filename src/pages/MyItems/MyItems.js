@@ -25,6 +25,8 @@ const MyItems = () => {
           setMyCars(remaining);
         }
       });
+    } else {
+      return;
     }
   };
   return (

@@ -20,7 +20,7 @@ const Chart = () => {
       <div className="row">
         <h3 className="section-title mb-5 fw-bold text-center">
           <span className="d-inline-block border-bottom border-danger border-2">
-            AN INVENTORY OVERVIEW
+            CAR DEALER DASHBOARD
           </span>
         </h3>
         <ResponsiveContainer width="100%" height={500}>

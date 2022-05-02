@@ -1,33 +1,30 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Button, Container, Form, Row } from "react-bootstrap";
 import auth from "../../firebase.init";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddItem = () => {
   const [user] = useAuthState(auth);
-  const refName = useRef("");
-  const refSupplier = useRef("");
-  const refPrice = useRef("");
-  const refQuantity = useRef("");
-  const refDescription = useRef("");
-  const refImg = useRef("");
+  const navigate = useNavigate();
 
   const handleAddCar = (e) => {
     e.preventDefault();
-
     const carObj = {
-      name: refName.current.value,
-      supplier: refSupplier.current.value,
+      name: e.target.name.value,
+      supplier: e.target.supplier.value,
       email: user.email,
-      price: refPrice.current.value,
-      quantity: refQuantity.current.value,
-      description: refDescription.current.value,
-      img: refImg.current.value,
+      price: e.target.price.value,
+      quantity: e.target.quantity.value,
+      description: e.target.description.value,
+      img: e.target.image.value,
     };
     axios.post("http://localhost:5000/car", carObj).then((response) => {
-      console.log("success");
+      toast("success");
     });
+    navigate("/my-items");
   };
   return (
     <div>
@@ -35,15 +32,15 @@ const AddItem = () => {
         <Row>
           <div className="col-md-6 mx-auto">
             <h2 className="my-5">Add A Car</h2>
-            <Form onClick={handleAddCar}>
+            <Form onSubmit={handleAddCar}>
               <Form.Group className="mb-3" controlId="formBasicModel">
                 <Form.Label>Model</Form.Label>
-                <Form.Control type="text" ref={refName} />
+                <Form.Control type="text" name="name" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicSupplier">
                 <Form.Label>Supplier</Form.Label>
-                <Form.Control type="text" ref={refSupplier} />
+                <Form.Control type="text" name="supplier" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -58,23 +55,23 @@ const AddItem = () => {
 
               <Form.Group className="mb-3" controlId="formBasicPrice">
                 <Form.Label>Price</Form.Label>
-                <Form.Control type="number" ref={refPrice} />
+                <Form.Control type="number" name="price" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicQuantity">
                 <Form.Label>Quantity</Form.Label>
-                <Form.Control type="number" ref={refQuantity} />
+                <Form.Control type="number" name="quantity" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicDescription">
                 <Form.Label>Description</Form.Label>
                 <br />
-                <textarea className="w-100" ref={refDescription}></textarea>
+                <textarea className="w-100" name="description"></textarea>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicImage">
                 <Form.Label>Image</Form.Label>
-                <Form.Control type="text" ref={refImg} />
+                <Form.Control type="text" name="image" />
               </Form.Group>
 
               <Button variant="primary" type="submit" className="w-100 fw-bold">

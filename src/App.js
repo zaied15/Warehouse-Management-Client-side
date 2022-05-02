@@ -12,6 +12,7 @@ import RequireAuth from "./pages/RequireAuth/RequireAuth";
 import ManageInventories from "./pages/ManageInventories/ManageInventories";
 import AddItem from "./pages/AddItem/AddItem";
 import MyItems from "./pages/MyItems/MyItems";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
         <Route path="/register" element={<Register></Register>}></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

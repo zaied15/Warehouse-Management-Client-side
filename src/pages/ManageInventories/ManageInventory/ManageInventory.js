@@ -1,7 +1,14 @@
+import axios from "axios";
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 
 const ManageInventory = ({ car }) => {
+  const handleDelete = (id) => {
+    const url = `http://localhost:5000/${id}`;
+    axios.post(url).then((response) => {
+      console.log(response);
+    });
+  };
   return (
     <div>
       <Container>
@@ -15,7 +22,12 @@ const ManageInventory = ({ car }) => {
                 <p>Quantity: {car.quantity}</p>
               </div>
               <div>
-                <button className="btn btn-danger">X</button>
+                <button
+                  onClick={() => handleDelete(car._id)}
+                  className="btn btn-danger"
+                >
+                  X
+                </button>
               </div>
             </div>
           </div>

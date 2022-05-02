@@ -25,8 +25,8 @@ const AddItem = () => {
       description: refDescription.current.value,
       img: refImg.current.value,
     };
-    axios.post("", carObj).then((response) => {
-      console.log(response);
+    axios.post("http://localhost:5000/car", carObj).then((response) => {
+      console.log("success");
     });
   };
   return (

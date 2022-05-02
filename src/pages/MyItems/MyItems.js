@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import MyCar from "./MyCar/MyCar";
 
@@ -15,8 +16,16 @@ const MyItems = () => {
   });
 
   const deleteMyItem = (id) => {
-    const remaining = myCars.filter((myCar) => myCar._id !== id);
-    setMyCars(remaining);
+    const proceed = window.confirm("Are You sure to DELETE?");
+    if (proceed) {
+      const url = `http://localhost:5000/carDelete/${id}`;
+      axios.post(url).then((response) => {
+        if (response.data.deletedCount > 0) {
+          const remaining = myCars.filter((myCar) => myCar._id !== id);
+          setMyCars(remaining);
+        }
+      });
+    }
   };
   return (
     <div className="container">

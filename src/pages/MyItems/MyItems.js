@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
@@ -9,11 +9,19 @@ const MyItems = () => {
   const [user] = useAuthState(auth);
   const [myCars, setMyCars] = useState([]);
 
-  const url = `http://localhost:5000/myCar?email=${user.email}`;
+  useEffect(() => {
+    const url = `http://localhost:5000/myCar?email=${user.email}`;
 
-  axios.get(url).then((response) => {
-    setMyCars(response.data);
-  });
+    axios
+      .get(url, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        setMyCars(response.data);
+      });
+  }, []);
 
   const deleteMyItem = (id) => {
     const proceed = window.confirm("Are You sure to DELETE?");

@@ -8,7 +8,7 @@ const FeaturedCar = ({ car }) => {
   const handleInventory = () => {
     navigate(`/inventory/${car._id}`);
     localStorage.setItem(car._id, car.quantity);
-    localStorage.setItem(`sold${car._id}`, car.sold);
+    localStorage.setItem(`sold${car._id}`, parseInt(car.sold));
   };
   return (
     <div className="col">

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import {
@@ -23,23 +24,26 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    signInWithEmailAndPassword(email, password);
-  };
-
   if (loading || sending) {
     return <Loading></Loading>;
   }
   if (user) {
-    navigate(from, { replace: true });
+    // navigate(from, { replace: true });
   }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    await signInWithEmailAndPassword(email, password);
+    const { data } = await axios.post("http://localhost:5000/login", {
+      email,
+    });
+    localStorage.setItem("accessToken", data);
+    navigate(from, { replace: true });
+  };
 
   const resetPassword = async () => {
     const email = emailRef.current.value;
-    console.log(email);
     if (email) {
       await sendPasswordResetEmail(email);
       toast("Email Sent. Please check!");

@@ -1,8 +1,17 @@
-# Getting Started with Create React App
+# [Car Dealer Inventory](https://car-inventory-auth.web.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Short Description
 
-## Available Scripts
+Car Dealer Inventory is designed on focus of warehouse management system where different types of model and brand are available.
+
+## Features and functionalities
+
+- In home page featured products, stock out products and dashboard are available.
+- User can add Item/product.
+- User can update quantity and also update delivered item.
+- Anyone can delete a product.
+- A user can see his individual uploaded product.
+- User can login/register with both email-password and google account.
 
 In the project directory, you can run:
 

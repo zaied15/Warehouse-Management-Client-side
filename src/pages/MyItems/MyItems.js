@@ -12,15 +12,19 @@ const MyItems = () => {
   useEffect(() => {
     const url = `http://localhost:5000/myCar?email=${user.email}`;
 
-    axios
-      .get(url, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-      .then((response) => {
-        setMyCars(response.data);
-      });
+    try {
+      axios
+        .get(url, {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        })
+        .then((response) => {
+          setMyCars(response.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   const deleteMyItem = (id) => {

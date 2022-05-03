@@ -27,9 +27,7 @@ const Login = () => {
   if (loading || sending) {
     return <Loading></Loading>;
   }
-  if (user) {
-    // navigate(from, { replace: true });
-  }
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;

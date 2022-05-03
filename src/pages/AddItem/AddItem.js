@@ -20,12 +20,12 @@ const AddItem = () => {
       quantity: e.target.quantity.value,
       description: e.target.description.value,
       img: e.target.image.value,
+      sold: e.target.sold.value,
     };
     axios.post("http://localhost:5000/car", carObj).then((response) => {
-      toast("success");
+      toast("Successfully Added");
     });
     e.target.reset();
-    // navigate("/my-items");
   };
   return (
     <div>
@@ -73,6 +73,11 @@ const AddItem = () => {
               <Form.Group className="mb-3" controlId="formBasicImage">
                 <Form.Label>Image</Form.Label>
                 <Form.Control type="text" name="image" />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicImage">
+                <Form.Label>Sold</Form.Label>
+                <Form.Control type="number" name="sold" />
               </Form.Group>
 
               <Button variant="primary" type="submit" className="w-100 fw-bold">

@@ -13,6 +13,7 @@ import ManageInventories from "./pages/ManageInventories/ManageInventories";
 import AddItem from "./pages/AddItem/AddItem";
 import MyItems from "./pages/MyItems/MyItems";
 import { ToastContainer } from "react-toastify";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
         ></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
       <ToastContainer></ToastContainer>

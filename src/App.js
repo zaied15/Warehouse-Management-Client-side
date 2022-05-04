@@ -15,6 +15,7 @@ import MyItems from "./pages/MyItems/MyItems";
 import { ToastContainer } from "react-toastify";
 import NotFound from "./pages/NotFound/NotFound";
 import Blog from "./pages/Blog/Blog/Blog";
+import Contact from "./pages/Contact/Contact";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
             </RequireAuth>
           }
         ></Route>
+        <Route path="/contact" element={<Contact></Contact>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>

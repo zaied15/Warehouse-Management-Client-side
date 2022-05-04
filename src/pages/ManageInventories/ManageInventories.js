@@ -6,7 +6,7 @@ const ManageInventories = () => {
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/cars")
+    fetch("https://car-dealer-heroku-server.herokuapp.com/cars")
       .then((res) => res.json())
       .then((data) => setCars(data));
   }, []);
@@ -14,7 +14,7 @@ const ManageInventories = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure to delete this item?");
     if (proceed) {
-      const url = `http://localhost:5000/carDelete/${id}`;
+      const url = `https://car-dealer-heroku-server.herokuapp.com/carDelete/${id}`;
       axios.post(url).then((response) => {
         if (response.data.deletedCount > 0) {
           const remaining = cars.filter((car) => car._id !== id);

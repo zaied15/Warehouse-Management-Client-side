@@ -13,7 +13,7 @@ const Inventory = () => {
   const [sold, setSold] = useState(localSoldId);
 
   useEffect(() => {
-    const url = `http://localhost:5000/car/${id}`;
+    const url = `https://car-dealer-heroku-server.herokuapp.com/car/${id}`;
     axios.post(url).then((response) => {
       setCar(response.data);
     });
@@ -29,7 +29,7 @@ const Inventory = () => {
     }
 
     const updatedQuantity = { quantity: localCarId - 1, sold: sold + 1 };
-    const url = `http://localhost:5000/car/${id}`;
+    const url = `https://car-dealer-heroku-server.herokuapp.com/car/${id}`;
     axios.put(url, updatedQuantity).then((response) => {
       toast("Delivered the car successfully!");
     });
@@ -42,7 +42,7 @@ const Inventory = () => {
     setNewQuantity(stockQuantity + localCarId);
     const UpdatedStockQuantity = { quantity: stockQuantity + localCarId };
 
-    const url = `http://localhost:5000/car/${id}`;
+    const url = `https://car-dealer-heroku-server.herokuapp.com/car/${id}`;
     axios.put(url, UpdatedStockQuantity).then((response) => {
       toast("Stock Added Successfully");
       e.target.reset();

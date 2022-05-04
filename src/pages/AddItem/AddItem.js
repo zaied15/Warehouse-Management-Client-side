@@ -16,15 +16,17 @@ const AddItem = () => {
       name: e.target.name.value,
       supplier: e.target.supplier.value,
       email: user.email,
-      price: e.target.price.value,
-      quantity: e.target.quantity.value,
+      price: parseInt(e.target.price.value),
+      quantity: parseInt(e.target.quantity.value),
       description: e.target.description.value,
       img: e.target.image.value,
-      sold: e.target.sold.value,
+      sold: parseInt(e.target.sold.value),
     };
-    axios.post("http://localhost:5000/car", carObj).then((response) => {
-      toast("Successfully Added");
-    });
+    axios
+      .post("https://car-dealer-heroku-server.herokuapp.com/car", carObj)
+      .then((response) => {
+        toast("Successfully Added");
+      });
     e.target.reset();
   };
   return (

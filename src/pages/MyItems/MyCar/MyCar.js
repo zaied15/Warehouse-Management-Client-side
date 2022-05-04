@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 const MyCar = ({ myCar, children }) => {
   const navigate = useNavigate();
+  const handleInventory = () => {
+    navigate(`/inventory/${myCar._id}`);
+    localStorage.setItem(myCar._id, myCar.quantity);
+    localStorage.setItem(`sold${myCar._id}`, parseInt(myCar.sold));
+  };
   return (
     <div className="col">
       <div className="card h-100 border-bottom-0">
@@ -32,10 +37,7 @@ const MyCar = ({ myCar, children }) => {
           <p className="card-text mt-3">{myCar.description}</p>
         </div>
         <div className="card-footer border-0 p-0">
-          <button
-            onClick={() => navigate(`/inventory/${myCar._id}`)}
-            className="w-50 btn btn-secondary"
-          >
+          <button onClick={handleInventory} className="w-50 btn btn-secondary">
             Update Inventory
           </button>
           {children}

@@ -32,7 +32,7 @@ const FeaturedCar = ({ car }) => {
             <h6 className="card-title bg-success p-2 rounded text-light">
               Supplier: {car.supplier}
             </h6>
-            <h6 className="card-title bg-info p-2 rounded text-light">
+            <h6 className="card-title bg-success p-2 rounded text-light">
               Quantity: {car.quantity}
             </h6>
           </div>
@@ -40,7 +40,7 @@ const FeaturedCar = ({ car }) => {
         </div>
         <div className="card-footer border-0 p-0">
           <button onClick={handleInventory} className="w-100 btn btn-secondary">
-            Update Inventory
+            UPDATE CAR
           </button>
         </div>
       </div>

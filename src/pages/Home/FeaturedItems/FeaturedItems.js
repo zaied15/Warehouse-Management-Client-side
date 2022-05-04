@@ -27,7 +27,7 @@ const FeaturedItems = () => {
               className="btn btn-danger fw-bold p-3"
               to="/manageInventories"
             >
-              Manage Inventories
+              MANAGE ALL CARS
             </Link>
           </h5>
         </div>

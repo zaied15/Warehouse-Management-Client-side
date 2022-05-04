@@ -14,6 +14,7 @@ import AddItem from "./pages/AddItem/AddItem";
 import MyItems from "./pages/MyItems/MyItems";
 import { ToastContainer } from "react-toastify";
 import NotFound from "./pages/NotFound/NotFound";
+import Blog from "./pages/Blog/Blog/Blog";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/blog" element={<Blog></Blog>}></Route>
         <Route
           path="/inventory/:id"
           element={

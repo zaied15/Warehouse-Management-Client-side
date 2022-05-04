@@ -2,22 +2,28 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../SocialLogin/SocialLogin";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useAuthState,
+  useCreateUserWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
+import useToken from "../../../hooks/useToken";
 
 const Register = () => {
   const [terms, setTerms] = useState(false);
   const [showPass, setShowPass] = useState(false);
-  const [createUserWithEmailAndPassword, user, loading, error] =
+  const [createUserWithEmailAndPassword, user1, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [errorMessage, setErrorMessage] = useState("");
+  const [user] = useAuthState(auth);
+  const [token] = useToken(user);
   const navigate = useNavigate();
 
   if (loading) {
     return <Loading></Loading>;
   }
-  if (user) {
+  if (token) {
     navigate("/");
   }
   const handleRegister = (e) => {

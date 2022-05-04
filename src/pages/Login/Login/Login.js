@@ -12,6 +12,7 @@ import auth from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import "./Login.css";
+import useToken from "../../../hooks/useToken";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
@@ -20,6 +21,7 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   const [user, loading] = useAuthState(auth);
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+  const [token] = useToken(user);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -28,19 +30,15 @@ const Login = () => {
     return <Loading></Loading>;
   }
 
+  if (token) {
+    navigate(from, { replace: true });
+  }
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     await signInWithEmailAndPassword(email, password);
-    const { data } = await axios.post(
-      "https://car-dealer-heroku-server.herokuapp.com/login",
-      {
-        email,
-      }
-    );
-    localStorage.setItem("accessToken", data);
-    navigate(from, { replace: true });
   };
 
   const resetPassword = async () => {

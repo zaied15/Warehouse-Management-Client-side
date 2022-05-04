@@ -12,6 +12,7 @@ import {
   YAxis,
 } from "recharts";
 import useCars from "../../../hooks/useCars";
+import "./Chart.css";
 
 const Chart = () => {
   const [cars] = useCars();

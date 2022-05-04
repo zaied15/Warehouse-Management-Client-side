@@ -12,6 +12,7 @@ Car Dealer Inventory is designed on focus of warehouse management system where d
 - Anyone can delete a product.
 - A user can see his individual uploaded product.
 - User can login/register with both email-password and google account.
+- JWT applied on login, register and social login
 
 In the project directory, you can run:
 

@@ -19,22 +19,24 @@ const Chart = () => {
   return (
     <div className="container mt-5">
       <div className="row">
-        <h3 className="section-title mb-5 fw-bold text-center">
-          <span className="d-inline-block border-bottom border-danger border-2">
-            CAR DEALER DASHBOARD
-          </span>
-        </h3>
-        <ResponsiveContainer width="100%" height={500}>
-          <BarChart data={cars}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis dataKey="quantity" />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="price" fill="#8884d8" />
-            <Bar dataKey="quantity" fill="#82ca9d" />
-          </BarChart>
-        </ResponsiveContainer>
+        <div className="col-md-12">
+          <h3 className="section-title mb-5 fw-bold text-center">
+            <span className="d-inline-block border-bottom border-danger border-2">
+              CAR DEALER DASHBOARD
+            </span>
+          </h3>
+          <ResponsiveContainer width="100%" height={500}>
+            <BarChart data={cars}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis dataKey="quantity" />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="price" fill="#8884d8" />
+              <Bar dataKey="quantity" fill="#82ca9d" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </div>
   );

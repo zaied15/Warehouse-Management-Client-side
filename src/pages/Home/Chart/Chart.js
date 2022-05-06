@@ -19,7 +19,7 @@ const Chart = () => {
   return (
     <div className="container mt-5">
       <div className="row">
-        <div className="col-md-12">
+        <div className="col-md-12 text-center">
           <h3 className="section-title mb-5 fw-bold text-center">
             <span className="d-inline-block border-bottom border-danger border-2">
               CAR DEALER DASHBOARD

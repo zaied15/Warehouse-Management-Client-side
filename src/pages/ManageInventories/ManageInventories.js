@@ -2,16 +2,18 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ManageInventory from "./ManageInventory/ManageInventory";
 import "./ManageInventories.css";
+import { useNavigate } from "react-router-dom";
 
 const ManageInventories = () => {
   const [cars, setCars] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(5);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(
-      `https://car-dealer-heroku-server.herokuapp.com?page=${page}&size=${size}`
+      `https://car-dealer-heroku-server.herokuapp.com/cars?page=${page}&size=${size}`
     )
       .then((res) => res.json())
       .then((data) => setCars(data));
@@ -22,10 +24,10 @@ const ManageInventories = () => {
       .get("https://car-dealer-heroku-server.herokuapp.com/carCount")
       .then((response) => {
         const count = response?.data?.count;
-        const pages = Math.ceil(count / 5);
+        const pages = Math.ceil(count / size);
         setPageCount(pages);
       });
-  }, []);
+  }, [page, size]);
 
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure to delete this item?");
@@ -42,7 +44,25 @@ const ManageInventories = () => {
 
   return (
     <div>
-      <h2 className="text-center my-5">Manage Your inventory</h2>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-8 mx-auto">
+            <div className="row">
+              <div className="col-md-8">
+                <h2 className="my-5">Manage Your inventory</h2>
+              </div>
+              <div className="col-md-4 text-end">
+                <button
+                  onClick={() => navigate("/add-item")}
+                  className="btn btn-danger mt-5"
+                >
+                  Add Car
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="d-flex flex-column">
         {cars.map((car) => (
           <ManageInventory key={car._id} car={car}>

@@ -56,15 +56,12 @@ const Inventory = () => {
           <div className="mx-auto">
             <Row>
               <div className="col-md-5">
-                <h2 className="text-center my-5">
-                  Please update your items: {car.name}
-                </h2>
-                <img
-                  src={car.img}
-                  width="250"
-                  alt=""
-                  className="d-inline-block mx-auto"
-                />
+                <div className="text-center mb-3">
+                  <h2 className="text-center my-5">
+                    Please update your items: {car?.name}
+                  </h2>
+                  <img src={car.img} width="250" alt="" className="rounded" />
+                </div>
                 <Form onSubmit={handleDeliver}>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Model:</Form.Label>
@@ -102,6 +99,8 @@ const Inventory = () => {
                     <br />
                     <textarea
                       className="w-100"
+                      style={{ resize: "none" }}
+                      rows="4"
                       value={car.description}
                       readOnly
                       disabled

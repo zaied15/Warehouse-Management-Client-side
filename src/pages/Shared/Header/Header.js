@@ -53,10 +53,18 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <Nav.Link as={Link} to="login">
+                  <Nav.Link
+                    className="btn btn-success text-light"
+                    as={Link}
+                    to="login"
+                  >
                     Login
                   </Nav.Link>
-                  <Nav.Link as={Link} to="register">
+                  <Nav.Link
+                    className="btn btn-dark ms-1 text-light opacity"
+                    as={Link}
+                    to="register"
+                  >
                     Register
                   </Nav.Link>
                 </>

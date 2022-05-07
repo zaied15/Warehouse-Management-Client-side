@@ -57,7 +57,8 @@ const Inventory = () => {
               <div className="col-md-5">
                 <div className="text-center mb-3">
                   <h2 className="text-center my-5">
-                    UPDATE YOUR CAR MODEL- {car?.name}
+                    UPDATE YOUR CAR-{" "}
+                    <span className="text-danger">{`${car?.name?.toUpperCase()}`}</span>
                   </h2>
                   <img src={car.img} width="250" alt="" className="rounded" />
                 </div>

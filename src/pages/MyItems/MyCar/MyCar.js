@@ -30,7 +30,7 @@ const MyCar = ({ myCar, children }) => {
             <h6 className="card-title bg-success p-2 rounded text-light">
               Supplier: {myCar.supplier}
             </h6>
-            <h6 className="card-title bg-info p-2 rounded text-light">
+            <h6 className="card-title bg-success p-2 rounded text-light">
               Quantity: {myCar.quantity}
             </h6>
           </div>
@@ -38,7 +38,7 @@ const MyCar = ({ myCar, children }) => {
         </div>
         <div className="card-footer border-0 p-0">
           <button onClick={handleInventory} className="w-50 btn btn-secondary">
-            Update Inventory
+            Update Car
           </button>
           {children}
         </div>

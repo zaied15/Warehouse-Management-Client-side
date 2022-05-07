@@ -9,7 +9,7 @@ const MyItems = () => {
   const [myCars, setMyCars] = useState([]);
 
   useEffect(() => {
-    const url = `https://car-dealer-heroku-server.herokuapp.com/myCar?email=${user.email}`;
+    const url = `https://car-dealer-heroku-server.herokuapp.com/myCar?email=${user?.email}`;
     axios
       .get(url, {
         headers: {
@@ -19,7 +19,7 @@ const MyItems = () => {
       .then((response) => {
         setMyCars(response.data);
       });
-  }, [user.email]);
+  }, [user?.email]);
 
   const deleteMyItem = (id) => {
     const proceed = window.confirm("Are You sure to DELETE?");

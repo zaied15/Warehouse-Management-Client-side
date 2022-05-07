@@ -25,13 +25,12 @@ const Inventory = () => {
     if (newQuantity > 0) {
       setNewQuantity(newQuantity - 1);
       localStorage.setItem(car._id, newQuantity - 1);
-      localStorage.setItem(`sold${id}`, sold + 1);
     }
 
     const updatedQuantity = { quantity: localCarId - 1, sold: sold + 1 };
     const url = `https://car-dealer-heroku-server.herokuapp.com/car/${id}`;
     axios.put(url, updatedQuantity).then((response) => {
-      toast("Delivered the car successfully!");
+      console.log("Delivered the car successfully!");
     });
   };
 
@@ -58,7 +57,7 @@ const Inventory = () => {
               <div className="col-md-5">
                 <div className="text-center mb-3">
                   <h2 className="text-center my-5">
-                    Please update your items: {car?.name}
+                    UPDATE YOUR CAR MODEL- {car?.name}
                   </h2>
                   <img src={car.img} width="250" alt="" className="rounded" />
                 </div>
@@ -111,10 +110,6 @@ const Inventory = () => {
                     <Form.Control type="text" value={newQuantity} readOnly />
                   </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Sold</Form.Label>
-                    <Form.Control type="text" value={sold} readOnly />
-                  </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     {newQuantity ? (
                       <Button
@@ -142,10 +137,10 @@ const Inventory = () => {
                     <Form.Control type="text" name="stockQuantity" />
                   </Form.Group>
                   <Button variant="primary" type="submit">
-                    Stock
+                    Stock update
                   </Button>
                 </Form>
-                <div className="d-flex justify-content-center align-items-center">
+                <div className="d-flex justify-content-center align-items-center mt-3">
                   <Link className="btn btn-danger" to="/manageInventories">
                     Manage Inventories
                   </Link>

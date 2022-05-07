@@ -52,22 +52,22 @@ const Header = () => {
                   </button>
                 </>
               ) : (
-                <>
+                <div className="d-flex gap-2">
                   <Nav.Link
-                    className="btn btn-success text-light"
+                    className="btn btn-success text-light px-2"
                     as={Link}
                     to="login"
                   >
-                    Login
+                    Sign in
                   </Nav.Link>
                   <Nav.Link
-                    className="btn btn-dark ms-1 text-light opacity"
+                    className="btn btn-dark text-light opacity px-2"
                     as={Link}
                     to="register"
                   >
-                    Register
+                    Sign up
                   </Nav.Link>
-                </>
+                </div>
               )}
             </Nav>
           </Navbar.Collapse>

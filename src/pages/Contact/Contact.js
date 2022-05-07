@@ -1,14 +1,20 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const Contact = () => {
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+    toast("Message Sent Successfully");
+    e.target.reset();
+  };
   return (
     <div className="d-flex justify-content-center align-items-center height-control">
       <div className="container">
         <div className="row justify-content-center align-items-center">
           <div className="col-md-6">
             <h2 className="mb-3">Please contact for any queries</h2>
-            <Form>
+            <Form onSubmit={handleSendMessage}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Control type="email" placeholder="Enter email" />
               </Form.Group>
@@ -27,7 +33,7 @@ const Contact = () => {
                 ></textarea>
               </Form.Group>
               <Button variant="primary" type="submit">
-                Submit
+                Send Message
               </Button>
             </Form>
           </div>

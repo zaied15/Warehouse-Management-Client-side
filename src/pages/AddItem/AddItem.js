@@ -20,7 +20,6 @@ const AddItem = () => {
       quantity: parseInt(e.target.quantity.value),
       description: e.target.description.value,
       img: e.target.image.value,
-      sold: parseInt(e.target.sold.value),
     };
     axios
       .post("https://car-dealer-heroku-server.herokuapp.com/car", carObj)
@@ -81,11 +80,6 @@ const AddItem = () => {
               <Form.Group className="mb-3" controlId="formBasicImage">
                 <Form.Label>Image</Form.Label>
                 <Form.Control type="text" name="image" required />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formBasicImage">
-                <Form.Label>Sold</Form.Label>
-                <Form.Control type="number" name="sold" required />
               </Form.Group>
 
               <Button variant="primary" type="submit" className="w-100 fw-bold">

@@ -15,7 +15,7 @@ const StockOut = () => {
             </span>
           </h3>
           <div className="row row-cols-1 row-cols-md-3 g-4">
-            {stockOut.map((car) => (
+            {stockOut.slice(0, 3).map((car) => (
               <FeaturedCar key={car._id} car={car}></FeaturedCar>
             ))}
           </div>

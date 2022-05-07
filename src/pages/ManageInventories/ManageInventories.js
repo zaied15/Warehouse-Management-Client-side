@@ -76,11 +76,6 @@ const ManageInventories = () => {
         ))}
       </div>
       <div className="text-center">
-        <div>
-          <p className="bg-secondary d-inline-block text-light p-2 rounded fw-bold">
-            Select your page from below
-          </p>
-        </div>
         {[...Array(pageCount).keys()].map((number) => (
           <button
             key={number}

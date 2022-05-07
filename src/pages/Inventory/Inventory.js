@@ -8,9 +8,7 @@ const Inventory = () => {
   const { id } = useParams();
   const [car, setCar] = useState({});
   const localCarId = parseInt(localStorage.getItem(id));
-  const localSoldId = parseInt(localStorage.getItem(`sold${id}`));
   const [newQuantity, setNewQuantity] = useState(localCarId);
-  const [sold, setSold] = useState(localSoldId);
 
   useEffect(() => {
     const url = `https://car-dealer-heroku-server.herokuapp.com/car/${id}`;
@@ -21,13 +19,13 @@ const Inventory = () => {
 
   const handleDeliver = (e) => {
     e.preventDefault();
-    setSold(sold + 1);
     if (newQuantity > 0) {
       setNewQuantity(newQuantity - 1);
       localStorage.setItem(car._id, newQuantity - 1);
     }
 
-    const updatedQuantity = { quantity: localCarId - 1, sold: sold + 1 };
+    const updatedQuantity = { quantity: localCarId - 1 };
+
     const url = `https://car-dealer-heroku-server.herokuapp.com/car/${id}`;
     axios.put(url, updatedQuantity).then((response) => {
       console.log("Delivered the car successfully!");

@@ -16,7 +16,7 @@ const FeaturedItems = () => {
             FEATURED PRODUCTS
           </span>
         </h3>
-        <div className="row row-cols-1 row-cols-md-3 g-4 mb-3">
+        <div className="row row-cols-1 row-cols-md-3 g-4 mb-3 mx-auto">
           {inStock.slice(0, 6).map((car) => (
             <FeaturedCar key={car._id} car={car}></FeaturedCar>
           ))}

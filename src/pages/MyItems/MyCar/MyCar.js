@@ -6,7 +6,6 @@ const MyCar = ({ myCar, children }) => {
   const handleInventory = () => {
     navigate(`/inventory/${myCar._id}`);
     localStorage.setItem(myCar._id, myCar.quantity);
-    localStorage.setItem(`sold${myCar._id}`, parseInt(myCar.sold));
   };
   return (
     <div className="col">
